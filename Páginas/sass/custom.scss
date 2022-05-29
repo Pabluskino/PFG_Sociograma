@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Permanent+Marker&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#encabezado{
+    font-family: 'Patrick Hand', cursive;
+    font-size: 50px;
+}
+
+$secondary: rgb(255, 163, 25);
+
+#título, #descripción{
+    -webkit-text-stroke: 0.1px black;
+    text-shadow: 0px 0px 5px black;
+}
+
+.form{
+    box-shadow: 0px 0px 5px black;
+}
+
+button{
+    border-color: transparent;
+}
+
+.formulario1, .formulario2{
+    background-color: rgba(255,255,255,0.75);
+    font-size: small;
+}
+
+.formulario1 #inputPassword6{
+    width: 2em;
+    text-align: center;
+    padding: 3px;
+}
+
+.formulario2 #GustarCompaneros{
+    width: 40em;
+    padding: 3px;
+}
+
+.footer {
+    position: fixed;
+    left: 1;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+// El import de bootstrap debe ser lo último
+@import "../node_modules/bootstrap/scss/bootstrap";

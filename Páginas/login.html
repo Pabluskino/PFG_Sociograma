@@ -31,7 +31,7 @@
             margin-right: 4px;
         }
 
-        #error{
+        #error {
             color: red;
         }
     </style>
@@ -54,16 +54,14 @@
             <div class="col-12 col-lg-5 order-lg-1 bg-white rounded p-4 form">
                 <form id="formulario">
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="Nombre" aria-describedby="emailHelp"
-                            placeholder="Nombre">
-                    </div>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" id="Apellidos" placeholder="Apellidos">
+                        <input type="text" class="form-control" id="Email" aria-describedby="emailHelp"
+                            placeholder="Email">
                     </div>
                     <div class="mb-3">
                         <input type="password" class="form-control" id="Password" placeholder="Contraseña">
                     </div>
-                    <button type="submit" id="button" class="btn btn-primary col-12 bg-secondary border">Acceder</button>
+                    <button type="submit" id="button"
+                        class="btn btn-primary col-12 bg-secondary border">Acceder</button>
                     <span id="error"></span>
                     <p class="mt-4 text-dark">Al hacer clic en el botón, acepta nuestros términos y servicios</p>
                 </form>
@@ -103,14 +101,12 @@
 <script>
     const $bLogin = document.getElementById('button')
 
-
     $bLogin.addEventListener('click', event => {
         event.preventDefault();
         var data = {
-            email: document.getElementById('Nombre').value,
+            email: document.getElementById('Email').value,
             password: document.getElementById('Password').value
         }
-
         console.log(data)
 
         fetch('http://localhost:3001/api/signin', {
@@ -121,27 +117,18 @@
                 'Content-Type': 'application/json'
             }
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data.token)
-            sessionStorage.setItem('token', data.token)
-            // Si el usuario está registrado te redirige a encuesta.html
-            if(data.token){
-                location.assign('/encuesta.html')
-            }else{
-
-            }
-        })
-            
-        .catch(err => { 
-            console.log(`Error en el login ${err}`)
-            document.getElementById('#error').textContent=err;
-        }) 
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                sessionStorage.setItem('token', data.token)
+                if(data.token){
+                    location.assign("./encuesta.html")
+                }else{
+                    document.getElementById('error').textContent=data.message;
+                }
+            })
+            .catch(err => console.log(err)) 
     })
-
-    // document.getElementById('cerrarSesion').addEventListener('click', e => {
-    //     sessionStorage.removeItem('token')
-    // })
 </script>
 
 </html>
